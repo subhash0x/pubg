@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for post in posts %}
+      <div class="card" style="width: 28rem;">
+      <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p>{{ post.author }} on {{post.date_posted|date:"F d, Y" }}
+      <p>{{ post.content}} </p>
+      <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
+      </div>
+      </div>
+    {% endfor %}
+{% endblock content %}
