@@ -5,9 +5,14 @@
       <div class="card" style="width: 28rem;">
       <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
-      <p>{{ post.author }} on {{post.date_posted|date:"F d, Y" }}
+      <p>Platform {{ post.Platform }} on {{ post.participants }} {{post.date_posted|date:"F d, Y" }}
+      <p>Registration Fee {{ post.reg_fee}}</p>
       <p>{{ post.content}} </p>
+      {% if user.is_authenticated %}
+        <a href="{% url 'blog-payment' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
+      {% else %}
       <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
+      {% endif %}
       </div>
       </div>
     {% endfor %}

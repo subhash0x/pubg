@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -11,3 +12,7 @@ def home(request):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+@login_required
+def payment(request):
+    return render(request, 'users/payment.html')
