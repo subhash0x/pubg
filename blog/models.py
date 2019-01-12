@@ -12,9 +12,9 @@ MAP_CHOICES = (
 
 
 class Post(models.Model):
-    #match_id = models.AutoField(editable=False,primary_key=True)
-    title = models.CharField(max_length=100)
-    participants = models.IntegerField(blank=True,default=0)
+    match_id = models.AutoField(editable=True,primary_key=True)
+    title = models.CharField(max_length=100,default='pubg')
+    participants = models.IntegerField(blank=True,default=100)
     starts_on = models.DateField(null=True, blank=True)
     reg_fee = models.IntegerField(blank=True,default=0)
     date_posted = models.DateTimeField(editable=False,default=timezone.now)
@@ -22,7 +22,7 @@ class Post(models.Model):
     team_type = models.CharField(max_length=50, blank=True)
     prize_pool = models.IntegerField(blank=True,default=0)
     per_kill = models.IntegerField(blank=True,default=0)
-    map = models.CharField(max_length=6, choices=MAP_CHOICES, default='Erangal')
+    map = models.CharField(max_length=20, choices=MAP_CHOICES, default='Erangal')
 
     def __str__(self):
         return self.title

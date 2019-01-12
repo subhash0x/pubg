@@ -13,6 +13,12 @@ def home(request):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
+
+
 @login_required
 def payment(request):
     return render(request, 'users/payment.html')
+
+
+def gamerule(request):
+    return render(request, 'blog/gamerule.html', {'title': 'gamerule'})

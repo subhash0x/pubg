@@ -2,18 +2,29 @@
 {% load static %}
 {% block content %}
     {% for post in posts %}
+      <center>
       <br>
-      <div class="card flex-row flex-wrap" style="width: 25rem;">
-      <div class="card-header border-0" >
-      <img src="{% static 'blog/test.jpg' %}" alt="My image" height="125px" width="75px">
-      <!-- <h5 class="card-title">{{ post.title }}</h5> -->
-      </div>
-      <div class="card-body px-2">
-      <p>participants {{ post.participants }}
-      <p>Entry: <b>{{ post.reg_fee}}&#x20b9;</b></p>
-      <p>Per kill {{ post.per_kill }}&#x20b9;</p>
+      <div class="card" id="headimg">
+      <div class="card-body px-1">
+    <table class="table" style="text-align:center;margin-top:-20px">
+  <thead>
+    <tr>
+      <th scope="col">Entry</th>
+      <th scope="col">Prize Pool</th>
+      <th scope="col">Per Kill</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ post.reg_fee}}&#x20b9;</td>
+      <td>{{post.prize_pool}}&#x20b9;</td>
+      <td>{{ post.per_kill }}&#x20b9</td>
+    </tr>
+  </tbody>
+</table>
+  <p>participants {{ post.match_id }}</p>
       {% if user.is_authenticated %}
-        <a href="{% url 'blog-payment' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join now</a>&nbsp&nbsp
+        <a href="{% url 'blog-payment' %}" class="btn my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join now</a>&nbsp&nbsp
       {% else %}
       <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
       {% endif %}
