@@ -1,8 +1,12 @@
 /* body {
- background-image: url("/static/blog/test.png");
+ background-image: url("/static/blog/test.jpg");
  color: white;
  height: 650px;
   }
 p{
   color:red;
 } */
+
+#uprofile{
+  color:black;
+}
