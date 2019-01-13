@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paytm',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,20 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'leetshieldgamer@gmail.com'
 EMAIL_HOST_PASSWORD = 'opjmhtvynjjrucgv'
+
+PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
+PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
+HOST_URL = "http://localhost:8080"
+PAYTM_CALLBACK_URL = "/paytm/response/"
+
+if DEBUG:
+    PAYTM_MERCHANT_KEY = "OVbF3I&#wRRpjq7x"
+    PAYTM_MERCHANT_ID = "kFwbnN99284816906640"
+    PAYTM_WEBSITE = 'WEB_STAGING'
+    HOST_URL = 'http://localhost:8000'
+    '''
+    In sandbox enviornment you can use following wallet credentials to login and make payment.
+    Mobile Number : 7777777777
+    Password : Paytm12345
+    This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
+    '''
