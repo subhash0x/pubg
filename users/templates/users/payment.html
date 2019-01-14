@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
     <h2>payment time</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <h1>you can payment here </h1>
+
+    <div class="card-body px-1">
+        <small class="text-muted" style="align:center;">
             <b>Amount Payable: Rs. {{game.reg_fee}}</b>
             <br><br>
             <a href='/paytm/payment?id={{game.id}}' class='btn btn-info' style='color:white'> Pay Now </a>
@@ -28,25 +28,50 @@
 
     <table class="table" >
   <thead>
-
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Prize</th>
+    </tr>
   </thead>
   <tbody>
-
-    <tr>  <td><p>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></p></td></tr>
-    <tr>  <td><p>1 Rank <b>{{ game.rank_1 }}&#x20b9;</b></p></td></tr>
-    <tr>  <td><p>2 Rank <b>{{ game.rank_2 }}&#x20b9;</b></p></td></tr>
-    <tr>  <td><p>3 Rank <b>{{ game.rank_3 }}&#x20b9;</b></p></td></tr>
-
-  </tbody>
+    <tr> <td><p>1</p></td>
+    <td><b>{{ game.rank_1 }}&#x20b9;</b></td>
+    <tr> <td><p>1</p></td>
+    <td><b>{{ game.rank_2 }}&#x20b9;</b></td>
+    <tr> <td><p>1</p></td>
+    <td><b>{{ game.rank_3 }}&#x20b9;</b></td>
+  </tr>
 </table>
+  <h3>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></h3>
 
 
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+    <table class="table" style="text-align:center;margin-top:-20px">
+  <thead>
+    <tr>
+      <th scope="col">Player</th>
+      <th scope="col">Total kill</th>
+      <th scope="col">Rank</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for order in game.get_successful_orders.all %}
-        <li>{{order.owner.username}} <li>
-          <li>{{order.owner.first_name}} <li>
+    <tr>
+      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
     {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
   </div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
     My Rule my Life
