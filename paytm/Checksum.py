@@ -58,7 +58,7 @@ def verify_checksum(param_dict, merchant_key, checksum):
         param_dict.pop('CHECKSUMHASH')
 
     # Get salt
-    paytm_hash = __decode__(checksum, IV, merchant_key)
+    paytm_hash = __decode__(checksum.encode('utf-8'), IV.encode('utf-8'), merchant_key)
     salt = paytm_hash[-4:]
     calculated_checksum = generate_checksum(param_dict, merchant_key, salt=salt)
     return calculated_checksum == checksum
@@ -69,9 +69,9 @@ def verify_checksum_by_str(param_str, merchant_key, checksum):
         #param_dict.pop('CHECKSUMHASH')
 
     # Get salt
-    paytm_hash = __decode__(checksum, IV, merchant_key)
+    paytm_hash = __decode__(checksum.encode('utf-8'), IV.encode('utf-8'), merchant_key)
     salt = paytm_hash[-4:]
-    calculated_checksum = generate_checksum_by_str(param_str, merchant_key, salt=salt)
+    calculated_checksum = generate_checksum_by_str(param_str.encode('utf-8'), merchant_key, salt=salt)
     return calculated_checksum == checksum
 
 
@@ -107,7 +107,7 @@ def __decode__(to_decode, iv, key):
     # Decode
     to_decode = base64.b64decode(to_decode)
     # Decrypt
-    c = AES.new(key, AES.MODE_CBC, iv)
+    c = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv)
     to_decode = c.decrypt(to_decode)
     if type(to_decode) == bytes:
         # convert bytes array to str.

@@ -22,9 +22,16 @@
     </tr>
   </tbody>
 </table>
-  <p>participants {{ post.match_id }}</p>
+<!-- <ul>
+    {% for order in post.get_successful_orders.all %}
+        <li>{{order.owner.email}} <li>
+    {% endfor %}
+</ul> -->
+  <p>participants {{ post.participants }}</p>
+  <p>gamid {{ post.id }}</p>
       {% if user.is_authenticated %}
-        <a href="{% url 'blog-payment' %}" class="btn my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join now</a>&nbsp&nbsp
+
+        <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join now</a>&nbsp&nbsp
       {% else %}
       <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
       {% endif %}

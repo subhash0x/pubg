@@ -1,9 +1,55 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
     <h2>payment time</h2>
     <div class="border-top pt-3">
         <small class="text-muted">
             <h1>you can payment here </h1>
+            <b>Amount Payable: Rs. {{game.reg_fee}}</b>
+            <br><br>
+            <a href='/paytm/payment?id={{game.id}}' class='btn btn-info' style='color:white'> Pay Now </a>
         </small>
     </div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">prize</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">leaderboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Rule</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+    <table class="table" >
+  <thead>
+
+  </thead>
+  <tbody>
+
+    <tr>  <td><p>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></p></td></tr>
+    <tr>  <td><p>1 Rank <b>{{ game.rank_1 }}&#x20b9;</b></p></td></tr>
+    <tr>  <td><p>2 Rank <b>{{ game.rank_2 }}&#x20b9;</b></p></td></tr>
+    <tr>  <td><p>3 Rank <b>{{ game.rank_3 }}&#x20b9;</b></p></td></tr>
+
+  </tbody>
+</table>
+
+
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    {% for order in game.get_successful_orders.all %}
+        <li>{{order.owner.username}} <li>
+          <li>{{order.owner.first_name}} <li>
+    {% endfor %}
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    My Rule my Life
+  </div>
+</div>
 {% endblock content %}

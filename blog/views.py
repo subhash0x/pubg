@@ -17,7 +17,11 @@ def about(request):
 
 @login_required
 def payment(request):
-    return render(request, 'users/payment.html')
+    gameId = request.GET['id']
+    print(gameId)
+    game = Post.objects.get(id=gameId)
+
+    return render(request, 'users/payment.html', {'game' : game})
 
 
 def gamerule(request):
