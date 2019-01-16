@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 MAP_CHOICES = (
@@ -10,6 +11,10 @@ MAP_CHOICES = (
     ('Vikendi','Vikendi'),
 )
 
+class prize(models.Model):
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_kill = models.IntegerField(blank=True,default=0)
+    rank = models.IntegerField(blank=True,default=0)
 
 class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,7 +24,7 @@ class Order(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100,default='pubg')
     participants = models.IntegerField(blank=True,default=100)
-    starts_on = models.DateField(null=True, blank=True)
+    timing = models.DateTimeField(default=datetime.now())
     reg_fee = models.IntegerField(blank=True,default=0)
     date_posted = models.DateTimeField(editable=False,default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,6 +35,13 @@ class Post(models.Model):
     rank_1 = models.IntegerField(blank=True,default=0)
     rank_2 = models.IntegerField(blank=True,default=0)
     rank_3 = models.IntegerField(blank=True,default=0)
+    rank_4 = models.IntegerField(blank=True,default=0)
+    rank_5 = models.IntegerField(blank=True,default=0)
+    rank_6 = models.IntegerField(blank=True,default=0)
+    rank_7 = models.IntegerField(blank=True,default=0)
+    rank_8 = models.IntegerField(blank=True,default=0)
+    rank_9 = models.IntegerField(blank=True,default=0)
+    rank_10 = models.IntegerField(blank=True,default=0)
 
     def get_successful_orders(self):
         return Order.objects.filter(payment_status='success', game=self)

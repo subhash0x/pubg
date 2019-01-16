@@ -5,11 +5,11 @@ from django.utils import timezone
 # Create your models here.
 
 class PaytmHistory(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='rel_payment_paytm',on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='rel_payment_paytm',on_delete=models.CASCADE)
     ORDERID = models.CharField('ORDER ID', max_length=30)
     TXNDATE = models.DateTimeField('TXN DATE', default=timezone.now)
     TXNID = models.TextField('TXN ID')
-    BANKTXNID = models.IntegerField('BANK TXN ID', null=True, blank=True)
+    BANKTXNID = models.CharField('BANK TXN ID', null=True,max_length=50, blank=True)
     BANKNAME = models.CharField('BANK NAME', max_length=50, null=True, blank=True)
     RESPCODE = models.IntegerField('RESP CODE')
     PAYMENTMODE = models.CharField('PAYMENT MODE', max_length=10, null=True, blank=True)

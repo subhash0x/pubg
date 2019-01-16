@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
@@ -7,6 +7,8 @@ from django.conf import settings
 from . import Checksum
 from paytm.models import PaytmHistory
 from blog.models import Post, Order
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 @login_required
@@ -30,7 +32,7 @@ def payment(request):
                     'MID':MERCHANT_ID,
                     'ORDER_ID':order.id,
                     'TXN_AMOUNT': bill_amount,
-                    'CUST_ID': request.user.email,
+                    'CUST_ID': request.user.username,
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': 'WEBSTAGING',
                     'CHANNEL_ID':'WEB',
@@ -55,11 +57,11 @@ def response(request):
             data_dict[key] = request.POST[key]
         verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
         if verify:
-            ph = PaytmHistory.objects.create(user=request.user, **data_dict)
-            order = Order.objects.get(id=ph.ORDERID)
-            order.payment_status = 'success'
+            order = Order.objects.get(id=data_dict['ORDERID'])
+            ph = PaytmHistory.objects.create(user=order.owner, **data_dict)
+            order.payment_status = data_dict['STATUS']
             order.save()
-            return render(request,"response.html",{"paytm":data_dict})
+            return redirect('/')
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

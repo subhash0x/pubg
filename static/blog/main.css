@@ -7,6 +7,16 @@ p{
   color:red;
 } */
 
+#logo{
+  height: 10%;
+  width: 10%;
+}
+
+#fff{
+  height: 5%;
+    color:white;
+}
+
 #uprofile{
   color:black;
 }

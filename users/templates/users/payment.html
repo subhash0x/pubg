@@ -36,9 +36,9 @@
   <tbody>
     <tr> <td><p>1</p></td>
     <td><b>{{ game.rank_1 }}&#x20b9;</b></td>
-    <tr> <td><p>1</p></td>
+    <tr> <td><p>2</p></td>
     <td><b>{{ game.rank_2 }}&#x20b9;</b></td>
-    <tr> <td><p>1</p></td>
+    <tr> <td><p>3</p></td>
     <td><b>{{ game.rank_3 }}&#x20b9;</b></td>
   </tr>
 </table>
@@ -61,8 +61,8 @@
     {% for order in game.get_successful_orders.all %}
     <tr>
       <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
-      <td>1</td>
-      <td>1</td>
+      <td><p><b>{{ prize.total_kill}} </b></p></td>
+      <td>{{ forloop.counter }}</td>
     </tr>
     {% endfor %}
   </tbody>

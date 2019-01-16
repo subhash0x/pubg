@@ -1,1 +1,9 @@
-Django~=2.1.5
+certifi==2018.11.29
+chardet==3.0.4
+Django==2.1.5
+django-crispy-forms==1.7.2
+idna==2.8
+Pillow==5.4.1
+pycryptodome==3.7.2
+pytz==2018.7
+requests==2.21.0
