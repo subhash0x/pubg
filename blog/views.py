@@ -14,7 +14,8 @@ def home(request):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
-
+def seo(request):
+    return render(request, 'blog/googlefcd4e01ee457c3df.html', {'title': 'seo'})
 
 @login_required
 def payment(request):
