@@ -49,6 +49,9 @@ class Post(models.Model):
 
     def get_successful_orders(self):
         return self.orders.filter(payment_status='TXN_SUCCESS')
+        # game.orders.filter(owner=request.user).order_by('-rank')
+
+
 
     def __str__(self):
         return self.title

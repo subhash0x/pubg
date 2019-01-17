@@ -27,6 +27,9 @@ def payment(request):
         context['paymentSuccess'] = True
     if game.orders.filter(owner=request.user).exists():
         context['user_has_paid'] = True
+        game.orders.filter(owner=request.user).order_by('-rank')[:10][::1]
+    # if game.orders.filter(owner=request.user).exists():
+    #     'order': Order.objects.all().order_by('-rank')
     return render(request, 'users/payment.html', context)
 
 
