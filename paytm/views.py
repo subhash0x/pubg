@@ -8,6 +8,7 @@ from . import Checksum
 from paytm.models import PaytmHistory
 from blog.models import Post, Order
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your views here.
 
@@ -61,7 +62,7 @@ def response(request):
             ph = PaytmHistory.objects.create(user=order.owner, **data_dict)
             order.payment_status = data_dict['STATUS']
             order.save()
-            return redirect('/')
+            return redirect('/payment?id=' + str(order.game.id) + '&success=True')
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

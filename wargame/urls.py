@@ -10,14 +10,15 @@ import paytm.urls
 
 
 
-admin.sites.AdminSite.site_header = 'LeetShield Admin'
-admin.sites.AdminSite.site_title = 'LeetShield Admin'
-admin.sites.AdminSite.index_title = 'LeetShield administration'
+admin.sites.AdminSite.site_header = 'GamingOrg Admin'
+admin.sites.AdminSite.site_title = 'GamingOrg Admin'
+admin.sites.AdminSite.index_title = 'GamingOrg administration'
 
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('darkworld/', admin.site.urls, name='admin'),
+    # path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),

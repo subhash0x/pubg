@@ -3,11 +3,34 @@
 {% block content %}
     <h2>payment time</h2>
 
+
+    <!-- {% if messages %}
+
+    <h1>I am inside MESSAGES</h1>
+
+        {% for message in messages %}
+            {% if order.payment_status == 'success' %}
+                <div class="alert alert-success" role="alert">{{ message|escape|safe }}</div>
+            {% elif message.tags == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ message|escape|safe }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+ -->
+{% if paymentSuccess %}
+  <div class='alert alert-info'> Success </div>
+{% endif %}
+
+
     <div class="card-body px-1">
         <small class="text-muted" style="align:center;">
             <b>Amount Payable: Rs. {{game.reg_fee}}</b>
             <br><br>
+            {% if user_has_paid %}
+            <a href='#' class='btn btn-info' style='color:white'> Paid </a>
+            {% else %}
             <a href='/paytm/payment?id={{game.id}}' class='btn btn-info' style='color:white'> Pay Now </a>
+            {% endif %}
         </small>
     </div>
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -60,14 +83,33 @@
   <tbody>
     {% for order in game.get_successful_orders.all %}
     <tr>
+      {% if request.user.is_staff %}
+      <form action='/updateOrder/' method='POST'>
+        {% csrf_token %}
       <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
-      <td><p><b>{{ prize.total_kill}} </b></p></td>
-      <td>{{ forloop.counter }}</td>
+      <input type='hidden' name='orderid' value='{{ order.id}}'>
+      <td><p><b><input type='number' name='kills' value='{{ order.total_kill }}'></input></b></p></td>
+      <td><p><b><input type='number' name='rank' value='{{ order.rank }}'></input></b></p></td>
+      <td><button class='btn btn-primary'>Save</button></td>
+      </form>
+      {% else %}
+      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
+      <td><p><b>{% if not order.total_kill %} # {% endif %} {{order.total_kill}} </b></p></td>
+      <td><p><b>{% if not order.rank %} # {% endif %} {{ order.rank}} </b></p></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
+
+    <!-- {% for order in game.get_successful_orders.all %}
+      <tr>
+      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
+      <td>1</td>
+      <td>1</td>
+      </tr>
+    {% endfor %} -->
 
 
 
@@ -77,4 +119,10 @@
     My Rule my Life
   </div>
 </div>
+
+
+
+
+
+
 {% endblock content %}
