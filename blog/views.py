@@ -6,7 +6,7 @@ from .models import Order
 
 def home(request):
     context = {
-        'posts': Post.objects.all().order_by('-date_posted')
+        'posts': Post.objects.all().order_by('-date_posted')[:5]
     }
     return render(request, 'blog/home.html', context)
 
@@ -14,6 +14,7 @@ def home(request):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
+@login_required
 def seo(request):
     return render(request, 'blog/googlefcd4e01ee457c3df.html', {'title': 'seo'})
 
@@ -42,6 +43,7 @@ def update_order(request):
     order.save()
     return redirect('/payment?id=' + str(order.game.id))
 
+@login_required
 def roominfo(request):
     post = Post.objects.get(id=request.POST['gameid'])
     post.room_id = request.POST['room_id']
