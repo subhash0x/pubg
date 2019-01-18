@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
     {% for post in posts %}
-
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c422f20fb11f316"></script>
       <center>
       <br>
       <div class="card" id="headimg">
@@ -48,8 +48,10 @@
 
       {% if user.is_authenticated %}
       <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join now</a>&nbsp&nbsp
+      <div class="addthis_inline_share_toolbox"></div>
       {% else %}
       <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
+      <div class="addthis_inline_share_toolbox"></div>
       {% endif %}
       </div>
       </div>
