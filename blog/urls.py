@@ -7,5 +7,6 @@ urlpatterns = [
     path('googlefcd4e01ee457c3df/', views.seo, name='googlefcd4e01ee457c3df'),
     path('payment/', views.payment, name='blog-payment'),
     path('updateOrder/', views.update_order, name='update-order'),
+    path('roominfo/', views.roominfo, name='update-room'),
 
 ]

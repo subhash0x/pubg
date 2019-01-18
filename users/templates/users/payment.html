@@ -78,10 +78,11 @@
       <th scope="col">Player</th>
       <th scope="col">Total kill</th>
       <th scope="col">Rank</th>
+        <th scope="col">prize Amount</th>
     </tr>
   </thead>
   <tbody>
-    {% for order in game.get_successful_orders.all %}
+    {% for order in game.get_successful_orders %}
     <tr>
       {% if request.user.is_staff %}
       <form action='/updateOrder/' method='POST'>
@@ -90,12 +91,15 @@
       <input type='hidden' name='orderid' value='{{ order.id}}'>
       <td><p><b><input type='number' name='kills' value='{{ order.total_kill }}'></input></b></p></td>
       <td><p><b><input type='number' name='rank' value='{{ order.rank }}'></input></b></p></td>
+      <td><p><b><input type='number' name='prize_amount' value='{{ order.prize_amount }}'></input>
+      </b></p></td>
       <td><button class='btn btn-primary'>Save</button></td>
       </form>
       {% else %}
       <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
       <td><p><b>{% if not order.total_kill %} # {% endif %} {{order.total_kill}} </b></p></td>
       <td><p><b>{% if not order.rank %} # {% endif %} {{ order.rank}} </b></p></td>
+      <td><p><b>{% if not order.prize_amount %} # {% endif %} {{ order.prize_amount}} </b></p></td>
       {% endif %}
     </tr>
     {% endfor %}
@@ -116,7 +120,35 @@
 
   </div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-    My Rule my Life
+
+
+
+
+
+
+
+    {% for order in game.get_successful_orders %}
+    <tr>
+      {% if request.user.is_staff %}
+      <form action='/roominfo/' method='POST'>
+        {% csrf_token %}
+      <input type='hidden' name='orderid' value='{{ order.id}}'>
+      <td><p><b>RoomId<input type='number' name='room_id' value='{{ order.room_id }}'></input></b></p></td>
+      <td><p><b>RoomPass<input type='number' name='room_pass' value='{{ order.room_pass }}'></input></b></p></td>
+      <td><button class='btn btn-primary'>Save</button></td>
+      </form>
+      <!-- {% else %}
+      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.username}}  </p></td>
+      <td><p><b>{% if not order.total_kill %} # {% endif %} {{order.total_kill}} </b></p></td>
+      <td><p><b>{% if not order.rank %} # {% endif %} {{ order.rank}} </b></p></td>
+      <td><p><b>{% if not order.prize_amount %} # {% endif %} {{ order.prize_amount}} </b></p></td> -->
+      {% endif %}
+    </tr>
+    {% endfor %}
+
+
+
+
   </div>
 </div>
 

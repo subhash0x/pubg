@@ -27,9 +27,7 @@ def payment(request):
         context['paymentSuccess'] = True
     if game.orders.filter(owner=request.user).exists():
         context['user_has_paid'] = True
-        game.orders.filter(owner=request.user).order_by('-rank')[:10][::1]
-    # if game.orders.filter(owner=request.user).exists():
-    #     'order': Order.objects.all().order_by('-rank')
+        # game.orders.filter(owner=request.user).order_by('-rank')[:10][::1]
     return render(request, 'users/payment.html', context)
 
 
@@ -40,5 +38,13 @@ def update_order(request):
     order = Order.objects.get(id=request.POST['orderid'])
     order.total_kill = request.POST['kills']
     order.rank = request.POST['rank']
+    order.prize_amount = request.POST['prize_amount']
+    order.save()
+    return redirect('/payment?id=' + str(order.game.id))
+
+def roominfo(request):
+    order = Order.objects.get(id=request.POST['orderid'])
+    order.room_id = request.POST['room_id']
+    order.room_pass = request.POST['room_pass']
     order.save()
     return redirect('/payment?id=' + str(order.game.id))

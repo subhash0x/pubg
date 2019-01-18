@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import datetime
+from itertools import chain
 
 
 MAP_CHOICES = (
@@ -24,6 +25,8 @@ class Order(models.Model):
     rank = models.IntegerField(blank=True,null=True)
     prize_amount = models.IntegerField(blank=True,null=True)
     paid_status =  models.CharField(max_length=20, default='pending')
+    room_id = models.CharField(max_length=50, default='0')
+    room_pass = models.CharField(max_length=50, default='0')
 
 class Post(models.Model):
     title = models.CharField(max_length=100,default='pubg')
@@ -48,7 +51,15 @@ class Post(models.Model):
     rank_10 = models.IntegerField(blank=True,default=0)
 
     def get_successful_orders(self):
-        return self.orders.filter(payment_status='TXN_SUCCESS')
+        data = []
+        a = self.orders.filter(payment_status='TXN_SUCCESS')
+        b = a.exclude(rank=None).order_by('rank')
+        for item in b:
+            data.append(item)
+        c = a.filter(rank=None).order_by('total_kill')
+        for item in c:
+            data.append(item)
+        return data
         # game.orders.filter(owner=request.user).order_by('-rank')
 
 

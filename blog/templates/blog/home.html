@@ -3,9 +3,6 @@
 {% block content %}
     {% for post in posts %}
 
-
-  
-
       <center>
       <br>
       <div class="card" id="headimg">
@@ -24,11 +21,15 @@
       <td>{{post.prize_pool}}&#x20b9;</td>
       <td>{{ post.per_kill }}&#x20b9</td>
     </tr>
+    <tr>
+      <td>{{post.map}}</td>
+      <td>{{post.timing}}</td>
+      <td>{{ post.team_type }}</td>
+    </tr>
   </tbody>
 </table>
 
 
-    <p>{{ post.map }}  {{ post.timing }}  {{ post.team_type }} </p>
 
 
 <p>{{ post.participants }}/</p>
