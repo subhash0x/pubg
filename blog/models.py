@@ -12,11 +12,6 @@ MAP_CHOICES = (
     ('Vikendi','Vikendi'),
 )
 
-# class prize(models.Model):
-#     name = models.ForeignKey(User, on_delete=models.CASCADE)
-#     total_kill = models.IntegerField(blank=True,default=0)
-#     rank = models.IntegerField(blank=True,default=0)
-
 class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='orders')
@@ -25,8 +20,6 @@ class Order(models.Model):
     rank = models.IntegerField(blank=True,null=True)
     prize_amount = models.IntegerField(blank=True,null=True)
     paid_status =  models.CharField(max_length=20, default='pending')
-    room_id = models.CharField(max_length=50, default='0')
-    room_pass = models.CharField(max_length=50, default='0')
 
 class Post(models.Model):
     title = models.CharField(max_length=100,default='pubg')
@@ -39,6 +32,8 @@ class Post(models.Model):
     prize_pool = models.IntegerField(blank=True,default=0)
     per_kill = models.IntegerField(blank=True,default=0)
     map = models.CharField(max_length=20, choices=MAP_CHOICES, default='Erangal')
+    room_id = models.CharField(max_length=50, default='0')
+    room_pass = models.CharField(max_length=50, default='0')
     rank_1 = models.IntegerField(blank=True,default=0)
     rank_2 = models.IntegerField(blank=True,default=0)
     rank_3 = models.IntegerField(blank=True,default=0)
@@ -60,7 +55,7 @@ class Post(models.Model):
         for item in c:
             data.append(item)
         return data
-        # game.orders.filter(owner=request.user).order_by('-rank')
+
 
 
 
