@@ -32,7 +32,7 @@
 
 
 
-<p>{{ post.participants }}/{{ post.orders.count }}</p>
+<p>{{ post.orders.count }}/{{ post.participants }}</p>
 
 <!-- <ul>
     {% for order in post.get_successful_orders.all %}
@@ -47,7 +47,7 @@
   </div><br>
   {% if user.is_authenticated %}
       {% if post.orders.count is 100 %}
-        <a href="#" class="btn my-2 my-sm-0" id="pos" role="button" disabled>Close</a>
+        <a href="#" class="btn my-2 my-sm-0 disabled" id="pos" role="button" disabled>Close</a>
       {% else %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join Now</a>
       {% endif %}
@@ -55,7 +55,7 @@
 
   {% else %}
       {% if post.orders.count is 100 %}
-        <a href="#" class="btn my-2 my-sm-0" id="pos" role="button"  disabled>Close</a>&nbsp&nbsp
+        <a href="#" class="btn my-2 my-sm-0 disabled" id="pos" role="button"  disabled>Close</a>&nbsp&nbsp
       {% else %}
         <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join</a>&nbsp&nbsp
       {% endif %}

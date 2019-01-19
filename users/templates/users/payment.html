@@ -107,12 +107,13 @@
       </form>
     {% else %}
       {% if user_has_paid %}
-
+      {% if game.get_successful_orders %}
       <b>RoomId<p>{{ game.room_id }}</p></b>
       <b>RoomPass<P>{{ game.room_pass }}</p>
         {% endif %}
+        {% endif %}
     {% endif %}
-  
+
   </div>
 </div>
 
