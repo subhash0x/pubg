@@ -98,17 +98,21 @@
     {% if request.user.is_staff %}
       <form action='/roominfo/' method='POST'>
         {% csrf_token %}
+        <tr>
       <input type='hidden' name='gameid' value='{{ game.id}}'>
-      <td><p><b>RoomId<input type='number' name='room_id' value='{{ game.room_id }}'></input></b></p></td>
-      <td><p><b>RoomPass<input type='number' name='room_pass' value='{{ game.room_pass }}'></input></b></p></td>
+      <td><p><b>RoomId<input type='text' name='room_id' value='{{ game.room_id }}'></input></b></p></td>
+      <td><p><b>RoomPass<input type='text' name='room_pass' value='{{ game.room_pass }}'></input></b></p></td>
       <td><button class='btn btn-primary'>Save</button></td>
+      <tr>
       </form>
     {% else %}
       {% if user_has_paid %}
+
       <b>RoomId<p>{{ game.room_id }}</p></b>
       <b>RoomPass<P>{{ game.room_pass }}</p>
         {% endif %}
     {% endif %}
+  
   </div>
 </div>
 

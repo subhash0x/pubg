@@ -7,6 +7,8 @@ from .models import Order
 def home(request):
     context = {
         'posts': Post.objects.all().order_by('-date_posted')[:5]
+    # c =  if post.orders.count is 1 or user.is_authenticated
+
     }
     return render(request, 'blog/home.html', context)
 
