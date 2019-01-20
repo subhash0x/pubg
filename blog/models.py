@@ -56,6 +56,12 @@ class Post(models.Model):
             data.append(item)
         return data
 
+    # def showthis(request):
+    #     a = self.orders.filter(payment_status='TXN_SUCCESS')
+    #     count = Book.objects.all().count()
+    #     context= {'count': count}
+    #     return tcount
+
 
 
 

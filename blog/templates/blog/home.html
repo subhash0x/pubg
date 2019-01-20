@@ -45,9 +45,10 @@
     <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width:{{ post.orders.count }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 
   </div>
-
+  <!-- {{ post.orders.count }} -->
   <br>
-  {{ post.orders.count }}/{{ post.participants }}
+{{  post.orders.count }}/{{ post.participants }}
+
 &nbsp;
   {% if user.is_authenticated %}
       {% if post.orders.count is 100 %}
