@@ -44,7 +44,7 @@ def payment(request):
                     'CALLBACK_URL':CALLBACK_URL,
                 }
         param_dict = data_dict
-        print(param_dict)
+        #print(param_dict)
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
         return render(request,"payment.html",{'paytmdict':param_dict})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
@@ -66,7 +66,7 @@ def response(request):
             ph = PaytmHistory.objects.create(user=order.owner, **data_dict)
             order.payment_status = data_dict['STATUS']
             order.save()
-            print(order.payment_status)
+            #print(order.payment_status)
             if order.payment_status == 'TXN_SUCCESS':
                 return redirect('/payment?id=' + str(order.game.id) + '&success=true')
             else:

@@ -8,6 +8,7 @@ urlpatterns = [
     path('payment/', views.payment, name='blog-payment'),
     path('updateOrder/', views.update_order, name='update-order'),
     path('roominfo/', views.roominfo, name='update-room'),
+    path('faq/', views.faq, name='blog-faq'),
     #path('contest/', views.roominfo, name=''),
 
 ]
