@@ -32,6 +32,7 @@ p{
 #myFooters {
     background-color: #3c3d41;
     color: white;
+
     padding-top: 30px;
 }
 
@@ -55,7 +56,11 @@ p{
     margin: 10px;
     color: #ccc;
 }
-
+.box{
+  padding:0px;
+  margin:0px;
+  width:95%;
+}
 #myFooters ul {
     list-style-type: none;
     padding-left: 0;

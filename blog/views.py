@@ -2,14 +2,13 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from .models import Order
+from django.db.models import Count
 
 
 def home(request):
     context = {
         'posts': Post.objects.all().order_by('-date_posted')[:5]
-    # c =  if post.orders.count is 1 or user.is_authenticated
-
-    }
+        }
     return render(request, 'blog/home.html', context)
 
 
@@ -30,6 +29,7 @@ def payment(request):
     game = Post.objects.get(id=gameId)
     context = {'game' : game }
     success = request.GET.get('success', None)
+
     if success is not None:
         print(success)
         if success == 'true':
@@ -40,6 +40,13 @@ def payment(request):
         context['user_has_paid'] = True
     return render(request, 'users/payment.html', context)
 
+
+#
+# def wow(request):
+#     x = game.orders.filter(payment_status='TXN_SUCCESS').count()
+#     context['x'] = True
+#     print(x)
+#     return render(request, 'users/home.html', x)
 
 def gamerule(request):
     return render(request, 'blog/gamerule.html', {'title': 'gamerule'})

@@ -45,6 +45,10 @@ class Post(models.Model):
     rank_9 = models.IntegerField(blank=True,default=0)
     rank_10 = models.IntegerField(blank=True,default=0)
 
+    def get_successful_order_count(self):
+        return self.orders.filter(payment_status='TXN_SUCCESS').count()
+
+
     def get_successful_orders(self):
         data = []
         a = self.orders.filter(payment_status='TXN_SUCCESS')

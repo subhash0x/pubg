@@ -102,7 +102,7 @@
     <div class="contents">
     </div>
         <footer id="myFooters">
-            <div class="containers">
+            <div class="containers box">
                 <div class="row">
                     <div class="col-sm-3">
                         <h2 class="logo"><a href="#">  </a></h2>
@@ -126,15 +126,13 @@
                     <div class="col-sm-2">
                         <h5>Support</h5>
                         <ul>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="{% url 'blog-faq' %}" tabindex="-1" >FAQ us</a></li>
                             <li><a href="https://www.facebook.com/GamingOrg">Help desk</a></li>
 
                         </ul>
                     </div>
                     <div class="col-sm-3">
                         <div class="social-networkss">
-                            <!-- <button type="button" class="btn btn-fb"><i class="fab fa-facebook-f pr-1"></i> Facebook</button>
-                            <button type="button" class="btn btn-ins"><i class="fab fa-instagram pr-1"></i> Instagram</button> -->
                             <a href="https://www.facebook.com/GamingOrg"><img src="{% static 'blog/fb.png' %}" alt="My image" height="10%" width="10%"></a>
                               <a href="https://www.instagram.com/"><img src="{% static 'blog/insta.png' %}" alt="My image" height="10%" width="10%"></a>
                         </div>

@@ -42,16 +42,16 @@
 
   <!-- <p>gamid {{ post.id }}</p> -->
   <div class="progress" style="margin:5% 5% 0 5%;border-radius:25px;height:10px;">
-    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width:{{ post.orders.count }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width:{{ post.get_successful_order_count }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 
   </div>
   <!-- {{ post.orders.count }} -->
   <br>
-{{  post.orders.count }}/{{ post.participants }}
+{{ post.get_successful_order_count }}/{{ post.participants }}
 
 &nbsp;
   {% if user.is_authenticated %}
-      {% if post.orders.count is 100 %}
+      {% if post.get_successful_order_count is 100 %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" disabled>Close</a>
       {% else %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join Now</a>
@@ -59,7 +59,7 @@
 
 
   {% else %}
-      {% if post.orders.count is 100 %}
+      {% if post.get_successful_order_count is 100 %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0 disabled" id="pos" role="button"  disabled>Close</a>&nbsp&nbsp
       {% else %}
         <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true" style="padding-left:5%;padding-right:5%;">Join</a>&nbsp&nbsp
