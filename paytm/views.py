@@ -64,7 +64,11 @@ def response(request):
             ph = PaytmHistory.objects.create(user=order.owner, **data_dict)
             order.payment_status = data_dict['STATUS']
             order.save()
-            return redirect('/payment?id=' + str(order.game.id) + '&success=True')
+            print(order.payment_status)
+            if order.payment_status == 'TXN_SUCCESS':
+                return redirect('/payment?id=' + str(order.game.id) + '&success=true')
+            else:
+                return redirect('/payment?id=' + str(order.game.id) + '&success=false')
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

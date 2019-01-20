@@ -1,11 +1,14 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
     <h2>payment time</h2>
 
-{% if paymentSuccess %}
-  <div class='alert alert-info'> Success </div>
-{% endif %}
+    {% if paymentSuccess %}
+      <div class='alert alert-info'> Success </div>
+    {% elif paymentFailed %}
+      <div class='alert alert-info'> Failed </div>
+    {% endif %}
 
 
     <div class="card-body px-1">
@@ -19,110 +22,116 @@
             {% endif %}
         </small>
     </div>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+
+
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">prize</a>
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Prize</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">leaderboard
-    </a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">leaderboard</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">RoomID/Paaword</a>
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">RommInfo</a>
   </li>
 </ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 
-    <table class="table" >
-  <thead>
-    <tr>
-      <th scope="col">Rank</th>
-      <th scope="col">Prize</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr> <td><p>1</p></td>
-    <td><b>{{ game.rank_1 }}&#x20b9;</b></td>
-    <tr> <td><p>2</p></td>
-    <td><b>{{ game.rank_2 }}&#x20b9;</b></td>
-    <tr> <td><p>3</p></td>
-    <td><b>{{ game.rank_3 }}&#x20b9;</b></td>
-  </tr>
-</table>
-  <h3>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></h3>
 
-
-  </div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-    <table class="table" style="text-align:center;margin-top:-20px">
-  <thead>
-    <tr>
-      <th scope="col">Player</th>
-      <th scope="col">Total kill</th>
-      <th scope="col">Rank</th>
-        <th scope="col">prize Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for order in game.get_successful_orders %}
-    <tr>
-      {% if request.user.is_staff %}
-      <form action='/updateOrder/' method='POST'>
-        {% csrf_token %}
-      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  </p></td>
-      <input type='hidden' name='orderid' value='{{ order.id}}'>
-      <td><p><b><input type='number' name='kills' value='{{ order.total_kill }}'></input></b></p></td>
-      <td><p><b><input type='number' name='rank' value='{{ order.rank }}'></input></b></p></td>
-      <td><p><b><input type='number' name='prize_amount' value='{{ order.prize_amount }}'></input>
-      </b></p></td>
-      <td><button class='btn btn-primary'>Save</button></td>
-      </form>
-      {% else %}
-      <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  </p></td>
-      <td><p><b>{% if not order.total_kill %} # {% endif %} <p style="color:red;"> {{order.total_kill|default_if_none:"&nbsp;"}}</p> </b></p></td>
-      <td><p><b>{% if not order.rank %} # {% endif %} {{ order.rank|default_if_none:"&nbsp;"}} </b></p></td>
-      <td><p><b>{% if not order.prize_amount|default_if_none:"&nbsp;" %} # {% endif %} <p style="color:green;">{{ order.prize_amount|default_if_none:"&nbsp;"}}&#x20b9;</p> </b></p></td>
-      {% endif %}
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-  </div>
-
-
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-    {% if request.user.is_staff %}
-      <form action='/roominfo/' method='POST'>
-        {% csrf_token %}
+        <table class="table" >
+      <thead>
         <tr>
-      <input type='hidden' name='gameid' value='{{ game.id}}'>
-      <td><p><b>RoomId<input type='text' name='room_id' value='{{ game.room_id }}'></input></b></p></td>
-      <td><p><b>RoomPass<input type='text' name='room_pass' value='{{ game.room_pass }}'></input></b></p></td>
-      <td><button class='btn btn-primary'>Save</button></td>
-      <tr>
-      </form>
-    {% else %}
-      {% if user_has_paid %}
-      {% if game.get_successful_orders %}
-      <b>RoomId<p>{{ game.room_id }}</p></b>
-      <b>RoomPass<P>{{ game.room_pass }}</p>
+          <th scope="col">Rank</th>
+          <th scope="col">Prize</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> <td><p>1</p></td>
+        <td><b>{{ game.rank_1 }}&#x20b9;</b></td>
+        <tr> <td><p>2</p></td>
+        <td><b>{{ game.rank_2 }}&#x20b9;</b></td>
+        <tr> <td><p>3</p></td>
+        <td><b>{{ game.rank_3 }}&#x20b9;</b></td>
+      </tr>
+    </table>
+      <h3>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></h3>
+
+
+
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+        <table class="table" style="text-align:center;margin-top:-20px">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Player</th>
+          <th scope="col">Total kill</th>
+          <th scope="col">Rank</th>
+            <th scope="col">prize Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in game.get_successful_orders %}
+        <tr>
+          {% if request.user.is_staff %}
+          <form action='/updateOrder/' method='POST'>
+            {% csrf_token %}
+          <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  </p></td>
+          <input type='hidden' name='orderid' value='{{ order.id}}'>
+          <td><p><b><input type='number' name='kills' value='{{ order.total_kill }}'></input></b></p></td>
+          <td><p><b><input type='number' name='rank' value='{{ order.rank }}'></input></b></p></td>
+          <td><p><b><input type='number' name='prize_amount' value='{{ order.prize_amount }}'></input>
+          </b></p></td>
+          <td><button class='btn btn-primary'>Save</button></td>
+          </form>
+          {% else %}
+          <td><p><b><img class="rounded-circle account-img" src="{{ order.owner.profile.image.url }}" style="height:30px;width:30px;"></p></td>
+          <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  </p></td>
+          <td><p><b>{% if not order.total_kill %} # {% endif %} <p style="color:red;"> {{order.total_kill|default_if_none:"&nbsp;"}}</p> </b></p></td>
+          <td><p><b>{% if not order.rank %} # {% endif %} {{ order.rank|default_if_none:"&nbsp;"}} </b></p></td>
+          <td><p><b>{% if not order.prize_amount|default_if_none:"" %} # {% endif %} <p style="color:green;">{{ order.prize_amount|default_if_none:""}}&#x20b9;</p> </b></p></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+
+
+        {% if request.user.is_staff %}
+          <form action='/roominfo/' method='POST'>
+            {% csrf_token %}
+            <tr>
+          <input type='hidden' name='gameid' value='{{ game.id}}'>
+          <td><p><b>RoomId  &nbsp<input type='text' name='room_id' value='{{ game.room_id }}'></input></b></p></td>
+          <td><p><b>RoomPass  &nbsp<input type='text' name='room_pass' value='{{ game.room_pass }}'></input></b></p></td>
+          <td><button class='btn btn-primary'>Save</button></td>
+          <tr>
+          </form>
+        {% else %}
+
+          {% if user_has_paid %}
+          {% if game.get_successful_orders %}
+          <b>RoomId<p>{{ game.room_id }}</p></b>
+          <b>RoomPass<P>{{ game.room_pass }}</p>
+          <p>Make sure to join the Room before the Match starting Time Once the match starts you wont be able to join</p>
+            {% endif %}
+            {% endif %}
+
         {% endif %}
-        {% endif %}
-    {% endif %}
 
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 {% endblock content %}

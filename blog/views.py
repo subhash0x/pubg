@@ -25,10 +25,15 @@ def payment(request):
     gameId = request.GET['id']
     print(gameId)
     game = Post.objects.get(id=gameId)
-    context = {'game' : game}
-    if request.GET.get('success', None):
-        context['paymentSuccess'] = True
-    if game.orders.filter(owner=request.user).exists():
+    context = {'game' : game }
+    success = request.GET.get('success', None)
+    if success is not None:
+        print(success)
+        if success == 'true':
+            context['paymentSuccess'] = True
+        else:
+            context['paymentFailed'] = True
+    if game.orders.filter(owner=request.user, payment_status='TXN_SUCCESS').exists():
         context['user_has_paid'] = True
     return render(request, 'users/payment.html', context)
 
