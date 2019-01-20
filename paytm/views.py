@@ -28,9 +28,9 @@ def payment(request):
     order_id = Checksum.__id_generator__()
 
     bill_amount = game.reg_fee
-    # if bill_amount =0 :
-    #     return redirect('/payment?id=' + str(order.game.id) + '&success=True')
-    if bill_amount:
+    if bill_amount == 0 :
+        return redirect('/payment?id=' + str(order.game.id) + '&success=True')
+    elif bill_amount:
         data_dict = {
                     'MID':MERCHANT_ID,
                     'ORDER_ID':order.id,
