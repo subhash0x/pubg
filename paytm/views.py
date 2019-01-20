@@ -29,7 +29,9 @@ def payment(request):
 
     bill_amount = game.reg_fee
     if bill_amount == 0 :
-        return redirect('/payment?id=' + str(order.game.id) + '&success=True')
+        order.payment_status = 'TXN_SUCCESS'
+        order.save()
+        return redirect('/payment?id=' + str(order.game.id) + '&success=true')
     elif bill_amount:
         data_dict = {
                     'MID':MERCHANT_ID,
