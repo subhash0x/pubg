@@ -130,7 +130,7 @@ LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
 
 
-#
+
 # STATIC_URL = '/static/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
@@ -148,28 +148,28 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'leetshieldgamer@gmail.com'
 EMAIL_HOST_PASSWORD = 'opjmhtvynjjrucgv'
 
-PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
-PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
-HOST_URL = "http://localhost:8080"
+#PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
+#PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
+#HOST_URL = "http://localhost:8080"
+#PAYTM_CALLBACK_URL = "/paytm/response/"
+
+PAYTM_MERCHANT_KEY = "E3B4iwk%H%rcyaTm"
+PAYTM_MERCHANT_ID = "TwqGBN88866537592108"
+HOST_URL = "http://www.gamingorg.com"
 PAYTM_CALLBACK_URL = "/paytm/response/"
 
-# PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
-# PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
-# HOST_URL = "http://www.gamingorg.com"
-# PAYTM_CALLBACK_URL = "/paytm/response/"
-
-
-# if DEBUG:
-#     PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
-#     PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
-#     PAYTM_WEBSITE = 'WEB_STAGING'
-#     HOST_URL = 'http://www.gamingorg.com'
 
 if DEBUG:
-    PAYTM_MERCHANT_KEY = "OVbF3I&#wRRpjq7x"
-    PAYTM_MERCHANT_ID = "kFwbnN99284816906640"
+    PAYTM_MERCHANT_KEY = "E3B4iwk%H%rcyaTm"
+    PAYTM_MERCHANT_ID = "TwqGBN88866537592108"
     PAYTM_WEBSITE = 'WEB_STAGING'
-    HOST_URL = 'http://localhost:8000'
+    HOST_URL = 'http://www.gamingorg.com'
+
+#if DEBUG:
+ #   PAYTM_MERCHANT_KEY = "OVbF3I&#wRRpjq7x"
+  #  PAYTM_MERCHANT_ID = "kFwbnN99284816906640"
+   # PAYTM_WEBSITE = 'WEB_STAGING'
+    #HOST_URL = 'http://localhost:8000'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
