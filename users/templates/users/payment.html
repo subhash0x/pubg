@@ -7,8 +7,10 @@
     {% if paymentSuccess %}
       <div class='alert alert-info'> Success </div>
     {% elif paymentFailed %}
-      <div class='alert alert-info'> Failed </div>
+      <div class='alert alert-danger'> Failed </div>
     {% endif %}
+
+
 
 <!--
     <div class="card-body px-1">
@@ -72,7 +74,7 @@
       </tr>
     </table>
       <h3>Per kill <b>{{ game.per_kill }}&#x20b9/kill</b></h3>
-
+<p>Prize Money can be changed without any prior notice if participation is less</p>
 
 
   </div>
@@ -95,7 +97,7 @@
           {% if request.user.is_staff %}
           <form action='/updateOrder/' method='POST'>
             {% csrf_token %}
-          <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  </p></td>
+          <td><p><b>{{order.owner.first_name}} </b><br>{{order.owner.profile.pubgusername}}  <p>{{order.owner.profile.phone}}</p></p></td>
           <input type='hidden' name='orderid' value='{{ order.id}}'>
           <td><p><b><input type='number' name='kills' value='{{ order.total_kill }}'></input></b></p></td>
           <td><p><b><input type='number' name='rank' value='{{ order.rank }}'></input></b></p></td>

@@ -115,7 +115,7 @@ def __decode__(to_decode, iv, key):
     # remove pad
     return __unpad__(to_decode)
 
-
+# 
 # if __name__ == "__main__":
 #     params = {
 #         "MID": "mid",
@@ -126,7 +126,7 @@ def __decode__(to_decode, iv, key):
 #         "INDUSTRY_TYPE_ID": "Retail",
 #         "WEBSITE": "xxxxxxxxxxx"
 #     }
-#
+
 #     print(verify_checksum(
 #         params, 'xxxxxxxxxxxxxxxx',
 #         "CD5ndX8VVjlzjWbbYoAtKQIlvtXPypQYOg0Fi2AUYKXZA5XSHiRF0FDj7vQu66S8MHx9NaDZ/uYm3WBOWHf+sDQAmTyxqUipA7i1nILlxrk="))

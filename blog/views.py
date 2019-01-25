@@ -3,6 +3,7 @@ from .models import Post
 from django.contrib.auth.decorators import login_required
 from .models import Order
 from django.db.models import Count
+from django.contrib import messages
 
 
 def home(request):
@@ -24,6 +25,9 @@ def seo(request):
 
 @login_required
 def payment(request):
+    if not request.user.profile.pubgusername:
+        messages.success(request, f'Please update your profile first')
+        return redirect('profile')
     gameId = request.GET['id']
     print(gameId)
     game = Post.objects.get(id=gameId)

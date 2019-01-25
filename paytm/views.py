@@ -39,7 +39,7 @@ def payment(request):
                     'TXN_AMOUNT': bill_amount,
                     'CUST_ID': request.user.username,
                     'INDUSTRY_TYPE_ID':'Retail',
-                    'WEBSITE': 'WEBSTAGING',
+                    'WEBSITE': 'DEFAULT',
                     'CHANNEL_ID':'WEB',
                     'CALLBACK_URL':CALLBACK_URL,
                 }
