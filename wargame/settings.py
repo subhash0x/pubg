@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*5=*a$s7ww#yb!kd8@to73c-_9yp(_z7f=_bvl!p)z-0$(=87y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','13.232.155.181','gamingorg.com','www.gamingorg.com','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','13.232.155.181','gamingorg.com','https://www.gamingorg.com','www.gamingorg.com','127.0.0.1']
 
 
 # Application definition

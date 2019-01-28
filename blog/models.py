@@ -3,7 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import datetime
 from itertools import chain
-
+import datetime as dt
+from datetime import datetime, timedelta
 
 MAP_CHOICES = (
     ('Erangal','Erangal'),
@@ -66,7 +67,12 @@ class Post(models.Model):
     #     context= {'count': count}
     #     return tcount
 
-
+    def limit(self):
+        nowtime = datetime.utcnow()
+        t = timezone.now()
+        t.astimezone(timezone.utc).replace(tzinfo=None)
+        a = self.timing
+        return a < t - timedelta(minutes=15)
 
 
     def __str__(self):

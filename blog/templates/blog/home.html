@@ -53,7 +53,9 @@
   {% if user.is_authenticated %}
       {% if post.get_successful_order_count is 100 %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" disabled>Close</a>
-      {% else %}
+     {% elif post.limit %}
+        <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" disabled>Close</a>       
+	{% else %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true">Join Now</a>
       {% endif %}
 
@@ -61,7 +63,10 @@
   {% else %}
       {% if post.get_successful_order_count is 100 %}
         <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0 disabled" id="pos" role="button"  disabled>Close</a>&nbsp&nbsp
-      {% else %}
+     {% elif post.limit %}
+          <a href="{% url 'blog-payment'%}?id={{post.id}}" class="btn my-2 my-sm-0" id="pos" role="button" disabled>Close</a>
+    
+	{% else %}
         <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0" id="pos" role="button" aria-disabled="true" style="padding-left:5%;padding-right:5%;">Join</a>&nbsp&nbsp
       {% endif %}
   {% endif %}
