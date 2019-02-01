@@ -72,7 +72,7 @@ class Post(models.Model):
         t = timezone.now()
         t.astimezone(timezone.utc).replace(tzinfo=None)
         a = self.timing
-        return a < t - timedelta(minutes=15)
+        return a < t - timedelta(minutes=-15)
 
 
     def __str__(self):
