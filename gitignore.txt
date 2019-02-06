@@ -1,5 +1,5 @@
 /menv/
-
+/__pycache__/
 *.settings.py
 .installed.cfg
 bin
