@@ -75,7 +75,7 @@
         <td><b>{{ game.rank_3 }}&#x20b9;</b></td>
       </tr>
     </table>
-      <h3>Per kill <b>{{ game.per_kill }}&#x20b9/-  {{ game.moreinfo }} </b></h3>
+    <h3>Per kill <b>{{ game.per_kill }}&#x20b9/kill  <b>{{ game.moreinfo }} </b></h3>
 <p>Prize Money can be changed without any prior notice if participation is less</p>
 
 

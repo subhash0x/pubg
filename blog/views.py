@@ -8,7 +8,7 @@ from django.contrib import messages
 
 def home(request):
     context = {
-        'posts': Post.objects.all().order_by('-date_posted')[:5]
+        'posts': Post.objects.all().order_by('-date_posted')[:8]
         }
     return render(request, 'blog/home.html', context)
 

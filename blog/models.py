@@ -32,6 +32,7 @@ class Post(models.Model):
     team_type = models.CharField(max_length=50, blank=True)
     prize_pool = models.IntegerField(blank=True,default=0)
     per_kill = models.IntegerField(blank=True,default=0)
+    moreinfo = models.CharField(max_length=100,blank=True)	
     map = models.CharField(max_length=20, choices=MAP_CHOICES, default='Erangal')
     room_id = models.CharField(max_length=50, default='0')
     room_pass = models.CharField(max_length=50, default='0')
