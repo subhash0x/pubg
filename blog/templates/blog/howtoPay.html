@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+
+<article class="post">
+  <header>
+    <br>
+<h1>How to Pay</h1>
+<p>Our Payment method are very easy, you just need to login your account after that go to the home page </p>
+<h4>Click join now button</h4>
+
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/click1.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a><br>
+<h4>Click Pay Now Button</h4>
+
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/click2.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+<h4>Just wait few second page will be redirect to the Gateway</h4>
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/click3.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/click4.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+<h4>Login Your Paytm Account and Pay</h4>
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/click5.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+
+<h4>After the finishing payment process, Now you are successfully paid and wait for the tournaments</h4>
+</article>
+{% endblock content %}

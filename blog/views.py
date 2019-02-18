@@ -8,7 +8,7 @@ from django.contrib import messages
 
 def home(request):
     context = {
-        'posts': Post.objects.all().order_by('-date_posted')[:8]
+        'posts': Post.objects.all().order_by('-date_posted')[:5]
         }
     return render(request, 'blog/home.html', context)
 
@@ -18,6 +18,15 @@ def about(request):
 
 def faq(request):
     return render(request, 'blog/faq.html', {'title': 'FAQ'})
+
+def howtojoin(request):
+    return render(request, 'blog/howtojoin.html', {'title': 'how to join'})
+
+def howtoPay(request):
+        return render(request, 'blog/howtoPay.html', {'title': 'how to Pay'})
+
+def joininroom(request):
+            return render(request, 'blog/joininroom.html', {'title': 'Join Room'})
 
 @login_required
 def seo(request):

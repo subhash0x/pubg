@@ -9,6 +9,9 @@ urlpatterns = [
     path('updateOrder/', views.update_order, name='update-order'),
     path('roominfo/', views.roominfo, name='update-room'),
     path('faq/', views.faq, name='blog-faq'),
-    #path('contest/', views.roominfo, name=''),
+    path('howtojoin/', views.howtojoin, name='blog-howtojoin'),
+    path('howtoPay/', views.howtoPay, name='blog-howtoPay'),
+    path('joininroom/', views.joininroom, name='blog-joininroom'),
+
 
 ]

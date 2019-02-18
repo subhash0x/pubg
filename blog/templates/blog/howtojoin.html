@@ -1,0 +1,71 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+
+<article class="post">
+  <header>
+    <br>
+  <h2>How to Join GamingOrg Tournaments ? </h2>
+
+
+  </header>
+
+  <div class="post-content">
+<p>1. First you have to create an account by clicking on the signup button.</p>
+<p>2. After filling the information in the page that is written , </p>
+
+
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/howtojoin.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+
+  </div>
+
+
+<p>Type User Name - Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+<div class="post-meta">
+  <ul>
+    <li class="text">For Example -<br> playerunkownbattlegrounds<br>Player@unknown<br>Player+unknown </li>
+
+  </ul>
+</div>
+<p>Type Your Email </p>
+<div class="post-meta">
+  <ul>
+    <li class="text">For Example -<br> abc@gmail.com<br>xyz@yahoo.com<br>pubg@live.com </li>
+
+  </ul>
+</div>
+<p>Type Your Password</p>
+
+  <div class="post-meta">
+    <ul>
+      <li class="text">Your password can't be too similar to your other personal information.</li>
+      <li class="text">Your password must contain at least 8 characters.</li>
+      <li class="text">Your password can't be a commonly used password.</li>
+      <li class="text">Your password can't be entirely numeric.</li>
+    </ul>
+  </div>
+  <p>For Example </p>
+  <div class="post-meta">
+    <ul>
+      <li class="text">Gaming@123</li>
+      <li class="text">gamingOrg@098</li>
+      <li class="text">G@mingOrg@123</li>
+    </ul>
+  </div>
+<p>3. Click on the signup button ,after that your account has been sucessfully created. After That click Profile</p>
+
+
+<a class="navbar-brand" href="{% url 'blog-home' %}">
+  <img src="{% static '/blog/profileimage0.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+</a>
+<br>
+<p>4. Fill the information which are given below</p
+  <a class="navbar-brand" href="{% url 'blog-home' %}">
+    <img src="{% static '/blog/profileimage.jpg' %}" alt="GamingOrg" height="100%" width="100%">
+  </a><br><br>
+  <p>5.Make sure your Pubg User Name and Paytm number are correct. than click update now your account sucessfully updated</p>
+</article>
+
+{% endblock content %}

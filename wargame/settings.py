@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*5=*a$s7ww#yb!kd8@to73c-_9yp(_z7f=_bvl!p)z-0$(=87y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','13.232.155.181','gamingorg.com','https://www.gamingorg.com','www.gamingorg.com','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','13.232.155.181','gamingorg.com','www.gamingorg.com','127.0.0.1']
 
 
 # Application definition
@@ -115,31 +115,19 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = ('./STATIC',)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
-
-
-
-# STATIC_URL = '/static/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# LOGIN_REDIRECT_URL = 'blog-home'
-# LOGIN_URL = 'login'
-
-
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -175,7 +163,7 @@ if DEBUG:
   #  PAYTM_MERCHANT_ID = "kFwbnN99284816906640"
    # PAYTM_WEBSITE = 'WEB_STAGING'
     #HOST_URL = 'http://localhost:8000'
-    
+
     #PAYTM_MERCHANT_KEY = "JzSu58NmY6@aPsj%"
     #PAYTM_MERCHANT_ID = "vqwIYU96184524167350"
     #PAYTM_WEBSITE = 'WEB_STAGING'
